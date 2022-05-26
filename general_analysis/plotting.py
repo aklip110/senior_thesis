@@ -386,6 +386,177 @@ def make_all_plots(filepath, paramArray, Fixed=True):
         ComparisonPlots(zAll, zAll, zAll2, zAll2, ["maroon", "darkblue"], ["maroon", "darkblue"], dataname, filepath, "z", T0, legend=False, fixed=Fixed)
     return
     
+#####################
+def overlay_all_plots(filepath, paramArray, Fixed=True):
+    filepath = "/Users/alexandraklipfel/Desktop/senior_thesis/"
+    print("Parameter array: ")
+    print(paramArray)
+    print("Parameter array shape: ", paramArray.shape)
+
+    #dataname = paramArray[n][0]
+    #plusX = paramArray[n][1]
+    #minX = paramArray[n][2]
+    #plusY = paramArray[n][3]
+    #minY = paramArray[n][4]
+    #V1 = paramArray[n][5]
+    #T0 = paramArray[n][10]
+
+    n = 0
+    xRight0, xLeft0, yRight0, yLeft0, zAll0 = complete_data(filepath, paramArray[n][0], paramArray[n][1], paramArray[n][2], paramArray[n][3], paramArray[n][4], paramArray[n][5], paramArray[n][10], fixed=Fixed)
+    n = 1
+    xRight1, xLeft1, yRight1, yLeft1, zAll1 = complete_data(filepath, paramArray[n][0], paramArray[n][1], paramArray[n][2], paramArray[n][3], paramArray[n][4], paramArray[n][5], paramArray[n][10], fixed=Fixed)
+    n = 2
+    xRight2, xLeft2, yRight2, yLeft2, zAll2 = complete_data(filepath, paramArray[n][0], paramArray[n][1], paramArray[n][2], paramArray[n][3], paramArray[n][4], paramArray[n][5], paramArray[n][10], fixed=Fixed)
+    
+    n = 3
+    xRight3, xLeft3, yRight3, yLeft3, zAll3 = complete_data(filepath, paramArray[n][0], paramArray[n][1], paramArray[n][2], paramArray[n][3], paramArray[n][4], paramArray[n][5], paramArray[n][10], fixed=Fixed)
+    n = 4
+    xRight4, xLeft4, yRight4, yLeft4, zAll4 = complete_data(filepath, paramArray[n][0], paramArray[n][1], paramArray[n][2], paramArray[n][3], paramArray[n][4], paramArray[n][5], paramArray[n][10], fixed=Fixed)
+    n = 5
+    xRight5, xLeft5, yRight5, yLeft5, zAll5 = complete_data(filepath, paramArray[n][0], paramArray[n][1], paramArray[n][2], paramArray[n][3], paramArray[n][4], paramArray[n][5], paramArray[n][10], fixed=Fixed)
+    
+    n = 6
+    xRight6, xLeft6, yRight6, yLeft6, zAll6 = complete_data(filepath, paramArray[n][0], paramArray[n][1], paramArray[n][2], paramArray[n][3], paramArray[n][4], paramArray[n][5], paramArray[n][10], fixed=Fixed)
+    n = 7
+    xRight7, xLeft7, yRight7, yLeft7, zAll7 = complete_data(filepath, paramArray[n][0], paramArray[n][1], paramArray[n][2], paramArray[n][3], paramArray[n][4], paramArray[n][5], paramArray[n][10], fixed=Fixed)
+    n = 8
+    xRight8, xLeft8, yRight8, yLeft8, zAll8 = complete_data(filepath, paramArray[n][0], paramArray[n][1], paramArray[n][2], paramArray[n][3], paramArray[n][4], paramArray[n][5], paramArray[n][10], fixed=Fixed)
+    
+    n = 9
+    xRight9, xLeft9, yRight9, yLeft9, zAll9 = complete_data(filepath, paramArray[n][0], paramArray[n][1], paramArray[n][2], paramArray[n][3], paramArray[n][4], paramArray[n][5], paramArray[n][10], fixed=Fixed)
+    n = 10
+    xRight10, xLeft10, yRight10, yLeft10, zAll10 = complete_data(filepath, paramArray[n][0], paramArray[n][1], paramArray[n][2], paramArray[n][3], paramArray[n][4], paramArray[n][5], paramArray[n][10], fixed=Fixed)
+    n = 11
+    xRight11, xLeft11, yRight11, yLeft11, zAll11 = complete_data(filepath, paramArray[n][0], paramArray[n][1], paramArray[n][2], paramArray[n][3], paramArray[n][4], paramArray[n][5], paramArray[n][10], fixed=Fixed)
+    n = 12
+    xRight12, xLeft12, yRight12, yLeft12, zAll12 = complete_data(filepath, paramArray[n][0], paramArray[n][1], paramArray[n][2], paramArray[n][3], paramArray[n][4], paramArray[n][5], paramArray[n][10], fixed=Fixed)
+
+    cs = ["black", "maroon", "red", "orange", "gold", "yellow", "yellowgreen", "green", "blue", "darkblue", "purple", "orchid", "pink"]
+    
+    #<|B|> vs. x
+    fig = plt.figure()
+    plt.ion()
+    
+    n = 0
+    T0 = paramArray[n][10] * (22.7 / 30000)
+    name = paramArray[n][0]
+    name = "Date: " + name[0:4] + ", Time: " + name[5:7] + ":" + name[8:10]
+    plt.scatter(xRight0[:, 0] - T0, xRight0[:, 7],  color=cs[n], label=name)
+    plt.scatter(xLeft0[:, 0] + T0, xLeft0[:, 7], color=cs[n])
+    plt.errorbar(xRight0[:, 0] - T0, xRight0[:, 7], yerr=xRight0[:, 8],fmt="o", color=cs[n])
+    plt.errorbar(xLeft0[:, 0] + T0, xLeft0[:, 7], yerr=xLeft0[:, 8], fmt="o",color=cs[n])
+    
+    n = 1
+    T0 = paramArray[n][10] * (22.7 / 30000)
+    name = paramArray[n][0]
+    name = "Date: " + name[0:4] + ", Time: " + name[5:7] + ":" + name[8:10]
+    plt.scatter(xRight1[:, 0] - T0, xRight1[:, 7],  color=cs[n], label=name)
+    plt.scatter(xLeft1[:, 0] + T0, xLeft1[:, 7], color=cs[n])
+    plt.errorbar(xRight1[:, 0] - T0, xRight1[:, 7], yerr=xRight1[:, 8],fmt="o", color=cs[n])
+    plt.errorbar(xLeft1[:, 0] + T0, xLeft1[:, 7], yerr=xLeft1[:, 8], fmt="o",color=cs[n])
+    
+    n = 2
+    T0 = paramArray[n][10] * (22.7 / 30000)
+    name = paramArray[n][0]
+    name = "Date: " + name[0:4] + ", Time: " + name[5:7] + ":" + name[8:10]
+    plt.scatter(xRight2[:, 0] - T0, xRight2[:, 7],  color=cs[n], label=name)
+    plt.scatter(xLeft2[:, 0] + T0, xLeft2[:, 7], color=cs[n])
+    plt.errorbar(xRight2[:, 0] - T0, xRight2[:, 7], yerr=xRight2[:, 8],fmt="o", color=cs[n])
+    plt.errorbar(xLeft2[:, 0] + T0, xLeft2[:, 7], yerr=xLeft2[:, 8], fmt="o",color=cs[n])
+
+    n = 3
+    T0 = paramArray[n][10] * (22.7 / 30000)
+    name = paramArray[n][0]
+    name = "Date: " + name[0:4] + ", Time: " + name[5:7] + ":" + name[8:10]
+    plt.scatter(xRight3[:, 0] - T0, xRight3[:, 7],  color=cs[n], label=name)
+    plt.scatter(xLeft3[:, 0] + T0, xLeft3[:, 7], color=cs[n])
+    plt.errorbar(xRight3[:, 0] - T0, xRight3[:, 7], yerr=xRight3[:, 8],fmt="o", color=cs[n])
+    plt.errorbar(xLeft3[:, 0] + T0, xLeft3[:, 7], yerr=xLeft3[:, 8], fmt="o",color=cs[n])
+    
+    n = 4
+    T0 = paramArray[n][10] * (22.7 / 30000)
+    name = paramArray[n][0]
+    name = "Date: " + name[0:4] + ", Time: " + name[5:7] + ":" + name[8:10]
+    plt.scatter(xRight4[:, 0] - T0, xRight4[:, 7],  color=cs[n], label=name)
+    plt.scatter(xLeft4[:, 0] + T0, xLeft4[:, 7], color=cs[n])
+    plt.errorbar(xRight4[:, 0] - T0, xRight4[:, 7], yerr=xRight4[:, 8],fmt="o", color=cs[n])
+    plt.errorbar(xLeft4[:, 0] + T0, xLeft4[:, 7], yerr=xLeft4[:, 8], fmt="o",color=cs[n])
+    
+    n = 5
+    T0 = paramArray[n][10] * (22.7 / 30000)
+    name = paramArray[n][0]
+    name = "Date: " + name[0:4] + ", Time: " + name[5:7] + ":" + name[8:10]
+    plt.scatter(xRight5[:, 0] - T0, xRight5[:, 7],  color=cs[n], label=name)
+    plt.scatter(xLeft5[:, 0] + T0, xLeft5[:, 7], color=cs[n])
+    plt.errorbar(xRight5[:, 0] - T0, xRight5[:, 7], yerr=xRight5[:, 8],fmt="o", color=cs[n])
+    plt.errorbar(xLeft5[:, 0] + T0, xLeft5[:, 7], yerr=xLeft5[:, 8], fmt="o",color=cs[n])
+    
+    n = 6
+    T0 = paramArray[n][10] * (22.7 / 30000)
+    name = paramArray[n][0]
+    name = "Date: " + name[0:4] + ", Time: " + name[5:7] + ":" + name[8:10]
+    plt.scatter(xRight6[:, 0] - T0, xRight6[:, 7],  color=cs[n], label=name)
+    plt.scatter(xLeft6[:, 0] + T0, xLeft6[:, 7], color=cs[n])
+    plt.errorbar(xRight6[:, 0] - T0, xRight6[:, 7], yerr=xRight6[:, 8],fmt="o", color=cs[n])
+    plt.errorbar(xLeft6[:, 0] + T0, xLeft6[:, 7], yerr=xLeft6[:, 8], fmt="o",color=cs[n])
+    
+    n = 7
+    T0 = paramArray[n][10] * (22.7 / 30000)
+    name = paramArray[n][0]
+    name = "Date: " + name[0:4] + ", Time: " + name[5:7] + ":" + name[8:10]
+    plt.scatter(xRight7[:, 0] - T0, xRight7[:, 7],  color=cs[n], label=name)
+    plt.scatter(xLeft7[:, 0] + T0, xLeft7[:, 7], color=cs[n])
+    plt.errorbar(xRight7[:, 0] - T0, xRight7[:, 7], yerr=xRight7[:, 8],fmt="o", color=cs[n])
+    plt.errorbar(xLeft7[:, 0] + T0, xLeft7[:, 7], yerr=xLeft7[:, 8], fmt="o",color=cs[n])
+    
+    n = 8
+    T0 = paramArray[n][10] * (22.7 / 30000)
+    name = paramArray[n][0]
+    name = "Date: " + name[0:4] + ", Time: " + name[5:7] + ":" + name[8:10]
+    plt.scatter(xRight8[:, 0] - T0, xRight8[:, 7],  color=cs[n], label=name)
+    plt.scatter(xLeft8[:, 0] + T0, xLeft8[:, 7], color=cs[n])
+    plt.errorbar(xRight8[:, 0] - T0, xRight8[:, 7], yerr=xRight8[:, 8],fmt="o", color=cs[n])
+    plt.errorbar(xLeft8[:, 0] + T0, xLeft8[:, 7], yerr=xLeft8[:, 8], fmt="o",color=cs[n])
+    
+    n = 10
+    T0 = paramArray[n][10] * (22.7 / 30000)
+    name = paramArray[n][0]
+    name = "Date: " + name[0:4] + ", Time: " + name[5:7] + ":" + name[8:10]
+    plt.scatter(xRight10[:, 0] - T0, xRight10[:, 7],  color=cs[n], label=name)
+    plt.scatter(xLeft10[:, 0] + T0, xLeft10[:, 7], color=cs[n])
+    plt.errorbar(xRight10[:, 0] - T0, xRight10[:, 7], yerr=xRight10[:, 8],fmt="o", color=cs[n])
+    plt.errorbar(xLeft10[:, 0] + T0, xLeft10[:, 7], yerr=xLeft10[:, 8], fmt="o",color=cs[n])
+    
+    n = 11
+    T0 = paramArray[n][10] * (22.7 / 30000)
+    name = paramArray[n][0]
+    name = "Date: " + name[0:4] + ", Time: " + name[5:7] + ":" + name[8:10]
+    plt.scatter(xRight11[:, 0] - T0, xRight11[:, 7],  color=cs[n], label=name)
+    plt.scatter(xLeft11[:, 0] + T0, xLeft11[:, 7], color=cs[n])
+    plt.errorbar(xRight11[:, 0] - T0, xRight11[:, 7], yerr=xRight11[:, 8],fmt="o", color=cs[n])
+    plt.errorbar(xLeft11[:, 0] + T0, xLeft11[:, 7], yerr=xLeft11[:, 8], fmt="o",color=cs[n])
+    
+    n = 12
+    T0 = paramArray[n][10] * (22.7 / 30000)
+    name = paramArray[n][0]
+    name = "Date: " + name[0:4] + ", Time: " + name[5:7] + ":" + name[8:10]
+    plt.scatter(xRight12[:, 0] - T0, xRight12[:, 7],  color=cs[n], label=name)
+    plt.scatter(xLeft12[:, 0] + T0, xLeft12[:, 7], color=cs[n])
+    plt.errorbar(xRight12[:, 0] - T0, xRight12[:, 7], yerr=xRight12[:, 8],fmt="o", color=cs[n])
+    plt.errorbar(xLeft12[:, 0] + T0, xLeft12[:, 7], yerr=xLeft12[:, 8], fmt="o",color=cs[n])
+
+    plt.xlabel("x (cm)")
+    plt.ylabel("<|B|> (mG)")
+    plt.title("<|B|> vs x: all overlayed")
+    plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+    plt.tight_layout()
+    plt.ioff()
+    plt.savefig(filepath + "/all_overlayed.png", dpi=500)
+    plt.show()
+    
+    
+    return
+    
 def import_comsol(filePath, fileName):
     """
     INPUT: filepath (string) is path to senior_thesis directory; fileName (string: "Bi(j)" | i,j = x, y, or z)
@@ -558,7 +729,7 @@ def plot_comsol(i, j, filePath, cutoff, fileName, pArr, symmetric=False, Fixed=T
     plt.ylabel("B" + i)
     plt.title("B" + i + "(" + j + ") comsol comparison: " + fileName + titleAdd)
     plt.ioff()
-    plt.savefig(filePath + "comsol_dat/"+fileName+"/B"+ i + "(" + j + ")_" + fileName + fileDelim, dpi=500)
+    plt.savefig(filePath + "/comsol_dat/"+ fileName + "/B_" + i + "(" + j + ")_" + dataName + fileDelim, dpi=500)
     #plt.show()
     plt.close(fig)
     print("min: ", min)
@@ -613,7 +784,9 @@ filepath = "/Users/alexandraklipfel/Desktop/senior_thesis/"
 #make_all_plots(filepath, paramArray, Fixed=True)
 
 
-for i in range(1, 13):
-    name = paramArray[i][0]
-    print(name)
-    plot_comsol("mag", "z", filepath, 15, name, paramArray, symmetric=True, Fixed=True)
+#for i in range(1, 13):
+    #name = paramArray[i][0]
+    #print(name)
+    #plot_comsol("mag", "z", filepath, 15, name, paramArray, symmetric=True, Fixed=True)
+
+overlay_all_plots(filepath, paramArray, Fixed=True)
