@@ -79,15 +79,15 @@ def getMags(data):
     outDat = outDat[1:, :]
     return outDat
 
-def finalize_data(filePath, dataName, plusX, minX, plusY, minY):
+def finalize_data(filePath, dataName, plusX, minX, plusY, minY, Fixed=True):
     """
     INPUT: filepath (string) specifies up to the senior thesis directory. dataName (string) is the date/time signifier for a particular dataset.
     FUNCTION: gets on and off data, rotates XY and Z data, subtracts out background and computes errors, computes magnitudes and errors
     OUTPUT: xyDat (nx15 array) and zDat (nx15 array) are ready to be averaged and that have two new columns: |B| and Berrs
     """
     # get on and off data
-    XYon, Zon = grab_data(filePath, dataName, 1)
-    XYoff, Zoff = grab_data(filePath, dataName, 0)
+    XYon, Zon = grab_data(filePath, dataName, 1, fixed=Fixed)
+    XYoff, Zoff = grab_data(filePath, dataName, 0, fixed=Fixed)
     
     # rotate all four files
     XYonRot = rotate_XY(XYon, dataName, "on", plusX, minX, plusY, minY, filePath)
@@ -242,13 +242,13 @@ def get_LeftRight(avgd_rot_dat, Vval, PLUSval, MINval, T0):
     
     for i in range(len(avgd_rot_dat)):
         if (avgd_rot_dat[i, 2] == Vval) and (avgd_rot_dat[i, 1] == PLUSval):
-            dist = (22.7 / 30000) * (avgd_rot_dat[i,0] - T0)
+            dist = (22.7 / 30000) * (avgd_rot_dat[i,0])
             addRow = [dist, avgd_rot_dat[i, 5], avgd_rot_dat[i, 6],avgd_rot_dat[i, 9],avgd_rot_dat[i, 10],avgd_rot_dat[i, 13],avgd_rot_dat[i, 14],avgd_rot_dat[i, -2],avgd_rot_dat[i, -1]]
             #print(addRow)
             Right = np.vstack([Right, addRow])
 
         if (avgd_rot_dat[i, 2] == Vval) and (avgd_rot_dat[i, 1] == MINval):
-            dist = (22.7 / 30000) * (-(avgd_rot_dat[i,0] - T0))
+            dist = (22.7 / 30000) * (-(avgd_rot_dat[i,0]))
             addRow = [dist, avgd_rot_dat[i, 5], avgd_rot_dat[i, 6],avgd_rot_dat[i, 9],avgd_rot_dat[i, 10],avgd_rot_dat[i, 13],avgd_rot_dat[i, 14],avgd_rot_dat[i, -2],avgd_rot_dat[i, -1]]
             #print(addRow)
             Left = np.vstack([Left, addRow])
@@ -278,13 +278,13 @@ def get_AllZ(avgd_rot_dat, Vval):
     print("    ")
     return allVals
     
-def complete_data(filePath, dataName, pX, mX, pY, mY, V1, T0):
+def complete_data(filePath, dataName, pX, mX, pY, mY, V1, T0, fixed=True):
     """
     INPUT: standard from previous functions.
     FUNCTION: this is the most general/broad function that calls all subsequent functions in this script and the get_data.py script. it generates the Bx, By, Bz, |B| data and their errors necessary for plotting given a single dataset name.
     OUTPUT: +/- x data, +/- y data, z data. (all nx9 arrays) [dist, Bx, err, By, err, Bz, err, |B|, err]
     """
-    xyDat, zDat = finalize_data(filePath, dataName, pX, mX, pY, mY)
+    xyDat, zDat = finalize_data(filePath, dataName, pX, mX, pY, mY, Fixed=fixed)
     
     xyAvgd = XY_averaging(xyDat, filePath, dataName)
     zAvgd = Z_averaging(zDat, filePath, dataName)

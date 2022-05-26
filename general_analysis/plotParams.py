@@ -15,56 +15,67 @@ def plotParameters(num, Rval, paramArray, vert=False):
     elif vert == True:
         pFile = filePath + "data_" + dataName + "/paramDat-vertical_sweep.txt"
     pData = np.loadtxt(pFile)
-    print(pFile)
+    #print(pFile)
     
     distvals = np.zeros(int(len(pData) / 4))
     phivals = np.zeros(int(len(pData) / 4))
     psivals = np.zeros(int(len(pData) / 4))
     thetavals = np.zeros(int(len(pData) / 4))
     
-    print("shape of pData: ", pData.shape)
+    #print("shape of pData: ", pData.shape)
     i = 0
     for j in range(len(pData)):
         if pData[j, 1] == Rval:
-            print("Yes: ", pData[j, 1])
+            #print("Yes: ", pData[j, 1])
             distvals[i] = pData[j, 0] * (22.7 / 30000)
             phivals[i] = pData[j, 2]
             psivals[i] = pData[j, 3]
             thetavals[i] = pData[j, 4]
             i += 1
             
-    print(distvals)
-    print(phivals)
-    print(psivals)
-    print(thetavals)
+    #print(distvals)
+    #print(phivals)
+    #print(psivals)
+    #print(thetavals)
             
     #plots
     #phi
     fig1 = plt.figure()
+    plt.ion()
     plt.scatter(distvals, phivals)
     plt.xlabel("distance (cm)")
     plt.ylabel("phi parameter estimate")
     plt.title("Phi param values: R = " + str(Rval))
+    plt.ioff()
     plt.savefig(filePath + "data_" + dataName + "/paramPlots/" + "phi" + str(Rval) + ".png", dpi=500)
-    plt.show()
+    #plt.show()
+    plt.close(fig1)
     
     #psi
-    fig1 = plt.figure()
+    fig2 = plt.figure()
+    plt.ion()
     plt.scatter(distvals, psivals)
     plt.xlabel("distance (cm)")
     plt.ylabel("psi parameter estimate")
     plt.title("Psi param values: R = " + str(Rval))
+    plt.ioff()
     plt.savefig(filePath + "data_" + dataName + "/paramPlots/" + "psi" + str(Rval) + ".png", dpi=500)
-    plt.show()
+    #plt.show()
+    plt.close(fig2)
     
     #theta
-    fig1 = plt.figure()
+    fig3 = plt.figure()
+    plt.ion()
     plt.scatter(distvals, thetavals)
     plt.xlabel("distance (cm)")
     plt.ylabel("theta parameter estimate")
     plt.title("Theta param values: R = " + str(Rval))
+    plt.ion()
     plt.savefig(filePath + "data_" + dataName + "/paramPlots/" + "theta" + str(Rval) + ".png", dpi=500)
-    plt.show()
+    #plt.show()
+    plt.close(fig3)
+    
+    plt.close('all')
     
     return
     

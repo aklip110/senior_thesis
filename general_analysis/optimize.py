@@ -40,6 +40,7 @@ def bFunc(T, R, phi, psi, theta, XYdata, Xp, Xm, Yp, Ym):
     """
     given a point (T, R, (V) not needed) and four angle parameters, this computes the field in the transformed coordinates
     """
+    #print("in bFunc-----------")
     #theta contains R info--it's determined by R
     #import file
     #filePath = "/Users/alexandraklipfel/Desktop/senior_thesis/"
@@ -96,6 +97,7 @@ def bFunc(T, R, phi, psi, theta, XYdata, Xp, Xm, Yp, Ym):
             bvec[i] = 0
     #print("bvec: ", bvec)
     #print("bvec mag: ", np.sqrt(np.dot(bvec, bvec)))
+    #print("end bFunc---------")
     return np.subtract(bvec, bObsVec)
     
 def bSqrs(x, XYdata):

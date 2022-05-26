@@ -22,3 +22,14 @@ FILES:
 	-currently trying to find reason for discrepancy between my data and brad's  
 
 
+5/25 updates:
+
+	-optimize.py: a script containing functions necessary do perform the LSQ optimization (called by inversion.py)
+	-paramPlots.py: a script containing functions to plot the phi, psi, and theta optimal params vs T at a given R (called by inversion.py)
+	-inversion.py: ACTUALLY RUNABLE a script to compute the optimal angles at each point, hit the observed data with the inverse rotation matrices, save "FIXED" data, save files with the parameter values, and make the parameter plots for each R
+	-get_data.py: a script with functions to grab and transform FIXED data for a given dataset name (called by deltaB_general.py, plotting.py)
+	-deltaB_general.py: a script which contains functions to subtract the off and on data, compute error propagation, transform the data while assuming perfect orientations and no misalignments (called by plotting.py)
+	-plotting.py: ACTUALLY RUNABLE script to produce a set of 12 plots for each of the 13 datasets, also has capability to make comparison plots of comsol data on top of my data
+
+
+	

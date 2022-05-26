@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 #given a data file name from umit (XX-XX_XX-XX) date and time
 #we import the corresponding Z and XY files. I will stick to manually separating the data because it's simpler
 
-def grab_data(filePath, dataName, OnOff):
+def grab_data(filePath, dataName, OnOff, fixed=True):
     """
     INPUT: filePath (string, / at end) is the path to the directory right above the folder where both Z and XY data are stored. dataName (string) is the date/time signature that specifies the specific directory and data. OnOff (int 0 or 1) specifies if we want to grab on or off data.
     FUNCTION: grabs and outputs the untransformed XY and Z datasets for either OFF or ON data in a specific data/time folder.
@@ -20,7 +20,10 @@ def grab_data(filePath, dataName, OnOff):
     print("Importing " + str(OnOff) + " data...")
     print("  File: " + str(dataName))
     #import XY data ------------------------------
-    XYfile = filePath + "data_" + dataName + "/" + "data_" + dataName + "-3D_scan-FIXED.txt"
+    if fixed==True:
+        XYfile = filePath + "data_" + dataName + "/" + "data_" + dataName + "-3D_scan-FIXED.txt"
+    elif fixed==False:
+                XYfile = filePath + "data_" + dataName + "/" + "data_" + dataName + "-3D_scan.txt"
     XYdata = np.loadtxt(XYfile)
     print("  XY Data sweep Shape: ", XYdata.shape)
     length = XYdata.shape[0]
